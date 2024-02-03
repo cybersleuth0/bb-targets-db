@@ -40,7 +40,7 @@ cat *.txt >> "$new_targets_file_sanitized"
 
 # Remove all .txt files except the new targets file
 find . -type f -wholename "./$new_targets_file_sanitized" -prune -o -type f -name "*.txt" -exec rm {} +
-
+grep '^*' "$new_targets_file_sanitized" > "$wildcard" && grep -v '^*' "$new_targets_file_sanitized" > temp.txt && mv temp.txt "$new_targets_file_sanitized"
 # Remove all .zip files
 rm *.zip
 
