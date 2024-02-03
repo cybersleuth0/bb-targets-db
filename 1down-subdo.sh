@@ -18,7 +18,8 @@ wget "https://chaos-data.projectdiscovery.io/index.json"
 #     fi
 # done
 
-cat index.json | jq -c '.[] | select(.URL and .bounty == true and .platform == "bugcrowd" and .change > 1) | .URL' | sed 's/"//g' | while read -r url; do
+# cat index.json | jq -c '.[] | select(.URL and .bounty == true and .platform == "bugcrowd" and .change > 1) | .URL' | sed 's/"//g' | while read -r url; do
+cat index.json | jq -c '.[] | select(.URL and .bounty == true and .platform == "hackerone" and .change >= 1) | .URL' | sed 's/"//g' | while read -r url; do
     wget "$url"
     counter=$((counter + 1))
     if [ $((counter % 30)) -eq 0 ]; then
