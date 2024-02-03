@@ -1,4 +1,7 @@
 #!/bin/bash
+#file path
+
+wildcard="wildcard.txt"
 
 if [ -e "index.json" ]; then
     rm "index.json"
